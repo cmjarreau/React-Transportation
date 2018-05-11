@@ -1,0 +1,160 @@
+function TitleAndParagraph(props) {
+  return ( 
+    <div>
+      <h1>{props.title}</h1>
+      <p>{props.description}</p>
+    </div>
+  )
+}
+
+function ListOptions(props) {
+  return (
+      <option value={props.item}>{props.item}</option>
+  )
+}
+
+function DropdownList(props) {
+  return (
+    <select>
+      <ListOptions item = {props.items[0]}/>
+      <ListOptions item = {props.items[1]}/>
+      <ListOptions item = {props.items[2]}/>
+      <ListOptions item = {props.items[3]}/>
+    </select>
+  )
+}
+
+function TitleAndBoxes(props) {
+  return ( 
+    <div>
+      <h1>{props.title}</h1>
+      <p>{props.boxText}
+        <input id="checkBox" type="checkbox"/>
+      </p>
+      <p>{props.dropdownText}
+        <DropdownList items={props.items}/>
+      </p>
+    </div>
+  )
+}
+
+function HeaderItem(props) {
+  return <th>{props.item}</th>
+}
+
+function TableHeaderContents(props) {
+  return (
+    <tr>
+      <HeaderItem item = {props.items[0]}/>
+      <HeaderItem item = {props.items[1]}/>
+      <HeaderItem item = {props.items[2]}/>
+      <HeaderItem item = {props.items[3]}/>
+    </tr>
+  )
+}
+
+function RowItem(props) {
+  return <td>{props.item}</td>
+}
+
+function CustomButton(props) {
+  return (
+    <button type="button">{props.contents}</button>
+  )
+}
+
+function TableRowContents(props) {
+  return (
+    <tr>
+      <RowItem item={props.items[0]}/>
+      <RowItem item={props.items[1]}/>
+      <RowItem item={props.items[2]}/>
+      <td><CustomButton contents="Buy Now"/></td>
+    </tr>
+  )
+}
+
+function CustomTable(props) {
+  return (
+    <table>
+        <TableHeaderContents items={props.headerItems}/>
+        <TableRowContents items={props.rowItems}/>
+    </table>
+  )
+}
+
+function TitleAndTable(props) {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <CustomTable 
+        headerItems={props.tableHeaderItems}
+        rowItems={props.tableRowItems}/>
+    </div>
+  )
+}
+
+function TransportApp(props) {
+  return (
+    <div>
+      <TitleAndParagraph 
+        title = "Welcome to React Transportation" 
+        description = "The best place to buy vehicles online"
+      />
+      
+      <TitleAndBoxes 
+        title = "Choose Option" 
+        boxText = "New Only" 
+        dropdownText = "Select Type" 
+        items={["All","Cars","Trucks","Convertibles"]}
+      />
+      
+      <TitleAndTable
+        title = "Cars"
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2013", "A", "$32000"]}
+      />
+      <TitleAndTable
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2011", "B", "$4400"]}
+      />
+      <TitleAndTable
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2016", "B", "$15500"]}
+      />
+      
+      <TitleAndTable
+        title = "Trucks"
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2014", "D", "$18000"]}
+      />
+      <TitleAndTable
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2013", "E", "$5200"]}
+      />
+      
+      <TitleAndTable
+        title = "Convertibles"
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2009", "F", "$2000"]}
+      />
+      <TitleAndTable
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2010", "G", "$6000"]}
+      />
+      <TitleAndTable
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2012", "H", "$12500"]}
+      />
+      <TitleAndTable
+        tableHeaderItems={["Year", "Model", "Price", "Buy"]}
+        tableRowItems={["2017", "M", "$50000"]}
+      />
+    </div>
+  )
+}
+
+ReactDOM.render(
+  <TransportApp/>,
+  document.getElementById("root")
+)
